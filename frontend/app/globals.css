@@ -1,0 +1,70 @@
+@import "tailwindcss";
+
+@theme {
+  --color-primary: #00f2ff;
+  --color-primary-dark: #0066cc;
+  --color-secondary: #bd00ff;
+  --color-secondary-dark: #7a00cc;
+  --color-accent: #ff00d4;
+  --color-dark-lighter: #1a1a1a;
+  --color-dark: #0a0a0a;
+  --color-dark-darker: #050505;
+
+  --font-inter: var(--font-inter);
+  --font-outfit: var(--font-outfit);
+}
+
+:root {
+  --background: #0a0a0a;
+  --foreground: #ffffff;
+}
+
+@layer base {
+  body {
+    background-color: var(--color-dark);
+    color: var(--foreground);
+    content-visibility: auto;
+  }
+}
+
+@layer components {
+  .btn-primary {
+    @apply px-6 py-3 bg-primary hover:bg-primary-dark text-black font-bold rounded-lg transition-all duration-300 shadow-[0_0_15px_rgba(0,242,255,0.3)] hover:shadow-[0_0_25px_rgba(0,242,255,0.5)];
+  }
+  
+  .btn-secondary {
+    @apply px-6 py-3 bg-transparent border-2 border-secondary text-secondary hover:bg-secondary hover:text-white font-bold rounded-lg transition-all duration-300 shadow-[0_0_15px_rgba(189,0,255,0.2)];
+  }
+
+  .neon-border {
+    @apply border border-gray-800 hover:border-primary/50 transition-all duration-500;
+  }
+
+  .glass-card {
+    @apply bg-dark-lighter/50 backdrop-blur-md border border-white/10 rounded-2xl p-6;
+  }
+}
+
+.gradient-text {
+  @apply bg-clip-text text-transparent bg-gradient-to-r from-primary via-secondary to-accent;
+}
+
+.glow-blue {
+  box-shadow: 0 0 20px rgba(0, 242, 255, 0.2);
+}
+
+.glow-purple {
+  box-shadow: 0 0 20px rgba(189, 0, 255, 0.2);
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background-color: var(--color-dark-darker);
+}
+
+::-webkit-scrollbar-thumb {
+  @apply bg-gray-800 rounded-full hover:bg-primary/50 transition-colors;
+}
