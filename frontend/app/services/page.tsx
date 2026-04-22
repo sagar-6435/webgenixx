@@ -1,6 +1,6 @@
 "use client";
 import { motion } from "framer-motion";
-import { Code, ShoppingCart, Layout, CreditCard, Tool, ArrowRight } from "lucide-react";
+import { Code, ShoppingCart, Layout, CreditCard, Wrench, ArrowRight } from "lucide-react";
 import Link from "next/link";
 
 export default function Services() {
@@ -34,7 +34,7 @@ export default function Services() {
       bg: "bg-emerald-400/10"
     },
     {
-      icon: Tool,
+      icon: Wrench,
       title: "Maintenance & SEO",
       desc: "Regular updates, security patches, and continuous SEO optimization to keep you ahead.",
       color: "text-orange-400",
