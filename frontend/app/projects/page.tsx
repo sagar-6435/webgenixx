@@ -58,7 +58,7 @@ export default function Projects() {
               >
                 <div className="relative aspect-video overflow-hidden rounded-xl mb-4">
                   <Image
-                    src={project.imageUrl.startsWith('http') ? project.imageUrl : `http://localhost:5000${project.imageUrl}`}
+                    src={project.imageUrl.startsWith('http') ? project.imageUrl : `${process.env.NEXT_PUBLIC_API_URL?.replace('/api', '')}${project.imageUrl}`}
                     alt={project.title}
                     fill
                     sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"

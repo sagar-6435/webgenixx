@@ -170,7 +170,7 @@ export default function AdminDashboard() {
                 <tr key={project._id} className="hover:bg-white/5 transition-colors">
                   <td className="px-6 py-4">
                     <div className="flex items-center gap-4">
-                      <img src={project.imageUrl.startsWith('http') ? project.imageUrl : `http://localhost:5000${project.imageUrl}`} className="w-12 h-12 rounded object-cover border border-white/10" alt="" />
+                      <img src={project.imageUrl.startsWith('http') ? project.imageUrl : `${process.env.NEXT_PUBLIC_API_URL?.replace('/api', '')}${project.imageUrl}`} className="w-12 h-12 rounded object-cover border border-white/10" alt="" />
                       <div>
                         <p className="font-bold">{project.title}</p>
                         <p className="text-xs text-gray-500 truncate max-w-[200px]">{project.description}</p>
@@ -228,10 +228,11 @@ export default function AdminDashboard() {
                 <div>
                   <label className="block text-sm text-gray-400 mb-1">Live URL</label>
                   <input
-                    type="url"
+                    type="text"
                     value={formData.liveUrl}
                     onChange={(e) => setFormData({ ...formData, liveUrl: e.target.value })}
                     className="w-full bg-dark border border-white/10 rounded-lg p-3 text-white outline-none focus:border-primary"
+                    placeholder="https://example.com"
                     required
                   />
                 </div>
@@ -252,7 +253,7 @@ export default function AdminDashboard() {
                 <div className="flex gap-4 items-center">
                   <div className="relative group w-32 h-20 bg-dark border border-dashed border-white/20 rounded-lg overflow-hidden flex items-center justify-center">
                     {formData.imageUrl ? (
-                      <img src={formData.imageUrl.startsWith('http') ? formData.imageUrl : `http://localhost:5000${formData.imageUrl}`} className="w-full h-full object-cover" alt="" />
+                      <img src={formData.imageUrl.startsWith('http') ? formData.imageUrl : `${process.env.NEXT_PUBLIC_API_URL?.replace('/api', '')}${formData.imageUrl}`} className="w-full h-full object-cover" alt="" />
                     ) : (
                       <ImageIcon className="text-gray-600" />
                     )}
