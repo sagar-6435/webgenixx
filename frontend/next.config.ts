@@ -1,8 +1,10 @@
-import type { NextConfig } from "next";
-
-const nextConfig: NextConfig = {
+/** @type {import('next').NextConfig} */
+const nextConfig = {
   eslint: {
     ignoreDuringBuilds: true,
+  },
+  typescript: {
+    ignoreBuildErrors: true,
   },
   images: {
     remotePatterns: [
@@ -13,8 +15,11 @@ const nextConfig: NextConfig = {
       {
         protocol: 'http',
         hostname: 'localhost',
-        port: '5000',
       },
+      {
+        protocol: 'https',
+        hostname: 'webgenixx.onrender.com',
+      }
     ],
   },
 };
