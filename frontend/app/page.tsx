@@ -224,12 +224,14 @@ export default function Home() {
           className="max-w-6xl mx-auto glass-card p-24 md:p-40 border-primary/20 text-center relative overflow-hidden"
         >
           <div className="absolute inset-0 bg-gradient-to-tr from-primary/10 via-dark-darker to-secondary/10 -z-10"></div>
-          <h2 className="text-6xl md:text-9xl font-black outfit leading-none mb-12 uppercase tracking-tighter">
-            LET'S <br /> <span className="gradient-text">CREATE</span>
-          </h2>
-          <Link href="/contact" className="btn-primary px-16 py-6 text-2xl font-black tracking-widest uppercase hover:scale-110 active:scale-95 transition-transform shadow-[0_0_40px_rgba(0,242,255,0.3)]">
-            Get Started
-          </Link>
+          <div className="relative z-10">
+            <h2 className="text-6xl md:text-9xl font-black outfit leading-none mb-12 uppercase tracking-tighter">
+              LET&apos;S <br /> <span className="gradient-text">CREATE</span>
+            </h2>
+            <Link href="/contact" className="btn-primary px-16 py-6 text-2xl font-black tracking-widest uppercase hover:scale-110 active:scale-95 transition-transform shadow-[0_0_40px_rgba(0,242,255,0.3)]">
+              Get Started
+            </Link>
+          </div>
           
           <div className="absolute top-1/2 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-primary/50 to-transparent -z-10 blur-sm"></div>
         </motion.div>
