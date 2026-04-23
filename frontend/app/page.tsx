@@ -90,20 +90,20 @@ export default function Home() {
               Architecting Digital Experiences
             </div>
 
-            <h1 className="text-6xl md:text-8xl lg:text-[10rem] font-black outfit leading-[0.85] mb-12 tracking-tighter">
+            <h1 className="text-5xl md:text-7xl lg:text-8xl font-black outfit leading-[0.85] mb-12 tracking-tighter">
               THE <br />
               <span className="gradient-text">WEBGENIXX</span>
             </h1>
 
-            <p className="text-gray-400 text-xl md:text-3xl max-w-4xl mx-auto mb-16 leading-tight font-extralight tracking-tight">
+            <p className="text-gray-400 text-lg md:text-xl max-w-3xl mx-auto mb-16 leading-tight font-extralight tracking-tight">
               We specialize in <span className="text-white">high-fidelity</span> web development that pushes the boundaries of <span className="text-white">depth and performance</span>.
             </p>
 
-            <div className="flex flex-col sm:flex-row items-center justify-center gap-8 mb-32">
-              <Link href="/contact" className="btn-primary group px-10 py-5 text-xl font-black">
-                Launch Project <ArrowRight className="ml-3 group-hover:translate-x-3 transition-transform" size={24} />
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-6 mb-32">
+              <Link href="/contact" className="btn-primary group flex items-center">
+                Launch Project <ArrowRight className="ml-2 group-hover:translate-x-2 transition-transform" size={20} />
               </Link>
-              <Link href="/projects" className="btn-secondary px-10 py-5 text-xl font-black">
+              <Link href="/projects" className="btn-secondary">
                 Portfolio
               </Link>
             </div>
@@ -159,7 +159,7 @@ export default function Home() {
             viewport={{ once: true }}
             className="text-center mb-32"
           >
-            <h2 className="text-5xl md:text-8xl font-black outfit mb-8 uppercase tracking-tighter">
+            <h2 className="text-4xl md:text-6xl font-black outfit mb-6 uppercase tracking-tighter">
               Engineering <span className="gradient-text">Excellence</span>
             </h2>
             <div className="h-1 w-32 bg-primary mx-auto rounded-full shadow-[0_0_20px_#00f2ff]"></div>
@@ -195,20 +195,20 @@ export default function Home() {
                 key={i}
                 variants={fadeInUp}
                 whileHover={{
-                  translateZ: 50,
-                  rotateX: -5,
-                  rotateY: 5,
-                  scale: 1.02
+                  translateZ: 30,
+                  rotateX: -2,
+                  rotateY: 2,
+                  scale: 1.01
                 }}
-                className="glass-card p-12 border-white/5 hover:border-primary/40 transition-all duration-300 transform-gpu"
+                className="glass-card p-8 border-white/5 hover:border-primary/40 transition-all duration-300 transform-gpu"
               >
-                <div className={`w-20 h-20 rounded-3xl bg-gradient-to-br ${feat.color} flex items-center justify-center mb-10 shadow-xl`}>
-                  <feat.icon className="text-white" size={40} />
+                <div className={`w-14 h-14 rounded-2xl bg-gradient-to-br ${feat.color} flex items-center justify-center mb-8 shadow-xl`}>
+                  <feat.icon className="text-white" size={28} />
                 </div>
-                <h3 className="text-3xl font-black mb-6 outfit tracking-tight">{feat.title}</h3>
-                <p className="text-gray-400 text-lg leading-relaxed mb-10 font-light">{feat.desc}</p>
-                <div className="flex items-center gap-3 text-primary text-xs font-black uppercase tracking-widest">
-                  Learn More <ChevronRight size={16} />
+                <h3 className="text-xl font-bold mb-4 outfit tracking-tight">{feat.title}</h3>
+                <p className="text-gray-400 text-base leading-relaxed mb-8 font-light">{feat.desc}</p>
+                <div className="flex items-center gap-2 text-primary text-[10px] font-black uppercase tracking-widest">
+                  Learn More <ChevronRight size={14} />
                 </div>
               </motion.div>
             ))}
@@ -219,16 +219,16 @@ export default function Home() {
       {/* Massive CTA */}
       <section className="py-48 px-4">
         <motion.div
-          initial={{ opacity: 0, scale: 0.8, rotateX: 10 }}
+          initial={{ opacity: 0, scale: 0.9, rotateX: 5 }}
           whileInView={{ opacity: 1, scale: 1, rotateX: 0 }}
-          className="max-w-6xl mx-auto glass-card p-24 md:p-40 border-primary/20 text-center relative overflow-hidden"
+          className="max-w-5xl mx-auto glass-card p-16 md:p-24 border-primary/20 text-center relative overflow-hidden"
         >
           <div className="absolute inset-0 bg-gradient-to-tr from-primary/10 via-dark-darker to-secondary/10 -z-10"></div>
           <div className="relative z-10">
-            <h2 className="text-6xl md:text-9xl font-black outfit leading-none mb-12 uppercase tracking-tighter">
+            <h2 className="text-5xl md:text-7xl font-black outfit leading-none mb-10 uppercase tracking-tighter">
               LET&apos;S <br /> <span className="gradient-text">CREATE</span>
             </h2>
-            <Link href="/contact" className="btn-primary px-16 py-6 text-2xl font-black tracking-widest uppercase hover:scale-110 active:scale-95 transition-transform shadow-[0_0_40px_rgba(0,242,255,0.3)]">
+            <Link href="/contact" className="btn-primary inline-block px-12 py-4">
               Get Started
             </Link>
           </div>

@@ -77,7 +77,7 @@ export default function Services() {
           initial={{ opacity: 0, scale: 0.95 }}
           whileInView={{ opacity: 1, scale: 1 }}
           viewport={{ once: true }}
-          className="glass-card p-12 md:p-20 border-primary/20 text-center relative overflow-hidden"
+          className="glass-card p-8 md:p-16 border-primary/20 text-center relative overflow-hidden"
         >
           <div className="relative z-10">
             <h2 className="text-4xl md:text-5xl font-bold outfit mb-8">
