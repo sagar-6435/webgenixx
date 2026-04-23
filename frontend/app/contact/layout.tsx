@@ -10,7 +10,9 @@ export const metadata: Metadata = {
     "freelance web developer in Andhra Pradesh", "startup web developers India",
     "small business website designers India", "Indian web development agency for startups",
     "web development company in South India", "website development services in West Godavari",
-    "web designers in Andhra Pradesh India", "website developers near Bhimavaram", "nearby web development services"
+    "web designers in Andhra Pradesh India", "website developers near Bhimavaram", "nearby web development services",
+    "best web development agency in South India", "top web development agency in West Godavari",
+    "affordable web development agency near me", "trusted web development agency in Andhra Pradesh"
   ],
 };
 

@@ -23,7 +23,9 @@ export const metadata: Metadata = {
     "best website development company India", "top web design company India", "trusted web development agency",
     "scalable website development services", "modern web development company", "Webgenixx digital agency India",
     "React.js developers", "Next.js development company", "Node.js experts", "NestJS development", "Firebase integration",
-    "PhonePe payment integration", "Juspay payment integration India", "full stack JS developers"
+    "PhonePe payment integration", "Juspay payment integration India", "full stack JS developers",
+    "web development agency in South India", "web development agency in West Godavari", "web development agency near me",
+    "premium web development agency", "fast web development services", "reliable web development company"
   ],
   authors: [{ name: "The WebGenixx Team" }],
   creator: "The WebGenixx",
