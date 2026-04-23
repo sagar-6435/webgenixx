@@ -21,7 +21,9 @@ export const metadata: Metadata = {
     "full stack web development company", "Webgenixx", "The WebGenixx", "Webgenixx India", 
     "Webgenixx digital solutions", "Webgenixx Bhimavaram", "Webgenixx Andhra Pradesh",
     "best website development company India", "top web design company India", "trusted web development agency",
-    "scalable website development services", "modern web development company", "Webgenixx digital agency India"
+    "scalable website development services", "modern web development company", "Webgenixx digital agency India",
+    "React.js developers", "Next.js development company", "Node.js experts", "NestJS development", "Firebase integration",
+    "PhonePe payment integration", "Juspay payment integration India", "full stack JS developers"
   ],
   authors: [{ name: "The WebGenixx Team" }],
   creator: "The WebGenixx",
