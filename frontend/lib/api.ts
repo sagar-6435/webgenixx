@@ -17,4 +17,18 @@ api.interceptors.request.use((config) => {
   return config;
 });
 
+// Add interceptor for response errors
+api.interceptors.response.use(
+  (response) => response,
+  (error) => {
+    if (error.response?.status === 401) {
+      if (typeof window !== 'undefined') {
+        localStorage.removeItem('admin_token');
+        window.location.href = '/admin/login';
+      }
+    }
+    return Promise.reject(error);
+  }
+);
+
 export default api;
