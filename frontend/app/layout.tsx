@@ -9,8 +9,40 @@ const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
 const outfit = Outfit({ subsets: ["latin"], variable: "--font-outfit" });
 
 export const metadata: Metadata = {
-  title: "The WebGenixx | Modern Web Development Agency",
-  description: "We build modern, high-performance websites and digital experiences.",
+  title: {
+    default: "The WebGenixx | Modern Web Development Agency",
+    template: "%s | The WebGenixx"
+  },
+  description: "The WebGenixx is a premium web development agency specializing in high-performance, 3D interactive, and SEO-optimized digital experiences.",
+  keywords: ["Web Development", "UI/UX Design", "3D Websites", "Next.js", "React", "Agency", "The WebGenixx", "Digital Transformation"],
+  authors: [{ name: "The WebGenixx Team" }],
+  creator: "The WebGenixx",
+  openGraph: {
+    type: "website",
+    locale: "en_US",
+    url: "https://webgenixx-xi.vercel.app",
+    siteName: "The WebGenixx",
+    title: "The WebGenixx | Modern Web Development Agency",
+    description: "Architecting high-fidelity digital experiences beyond dimensions.",
+    images: [
+      {
+        url: "/og-image.png",
+        width: 1200,
+        height: 630,
+        alt: "The WebGenixx",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "The WebGenixx | Modern Web Development Agency",
+    description: "Architecting high-fidelity digital experiences beyond dimensions.",
+    images: ["/og-image.png"],
+  },
+  robots: {
+    index: true,
+    follow: true,
+  },
 };
 
 export default function RootLayout({
