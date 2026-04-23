@@ -13,13 +13,15 @@ export const metadata: Metadata = {
     default: "The WebGenixx | Best Web Development Company in India",
     template: "%s | The WebGenixx"
   },
-  description: "The WebGenixx is a leading web development agency and creative web design company in India. We provide custom website design, professional web application development, and full-stack solutions for startups and businesses.",
+  description: "The WebGenixx is the best website development company in India, offering top web design and professional web development services. A leading agency for custom, scalable, and modern web solutions.",
   keywords: [
     "best web development company", "top web development agency", "leading web design agency", 
     "website design company India", "custom website design company", "professional web design services",
     "digital web solutions company", "web application development company", "creative web agency",
     "full stack web development company", "Webgenixx", "The WebGenixx", "Webgenixx India", 
-    "Webgenixx digital solutions", "Webgenixx Bhimavaram", "Webgenixx Andhra Pradesh"
+    "Webgenixx digital solutions", "Webgenixx Bhimavaram", "Webgenixx Andhra Pradesh",
+    "best website development company India", "top web design company India", "trusted web development agency",
+    "scalable website development services", "modern web development company", "Webgenixx digital agency India"
   ],
   authors: [{ name: "The WebGenixx Team" }],
   creator: "The WebGenixx",
