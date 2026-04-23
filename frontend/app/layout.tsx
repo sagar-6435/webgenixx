@@ -10,11 +10,17 @@ const outfit = Outfit({ subsets: ["latin"], variable: "--font-outfit" });
 
 export const metadata: Metadata = {
   title: {
-    default: "The WebGenixx | Modern Web Development Agency",
+    default: "The WebGenixx | Best Web Development Company in India",
     template: "%s | The WebGenixx"
   },
-  description: "The WebGenixx is a premium web development agency specializing in high-performance, 3D interactive, and SEO-optimized digital experiences.",
-  keywords: ["Web Development", "UI/UX Design", "3D Websites", "Next.js", "React", "Agency", "The WebGenixx", "Digital Transformation"],
+  description: "The WebGenixx is a leading web development agency and creative web design company in India. We provide custom website design, professional web application development, and full-stack solutions for startups and businesses.",
+  keywords: [
+    "best web development company", "top web development agency", "leading web design agency", 
+    "website design company India", "custom website design company", "professional web design services",
+    "digital web solutions company", "web application development company", "creative web agency",
+    "full stack web development company", "Webgenixx", "The WebGenixx", "Webgenixx India", 
+    "Webgenixx digital solutions", "Webgenixx Bhimavaram", "Webgenixx Andhra Pradesh"
+  ],
   authors: [{ name: "The WebGenixx Team" }],
   creator: "The WebGenixx",
   openGraph: {
@@ -22,8 +28,8 @@ export const metadata: Metadata = {
     locale: "en_US",
     url: "https://webgenixx-xi.vercel.app",
     siteName: "The WebGenixx",
-    title: "The WebGenixx | Modern Web Development Agency",
-    description: "Architecting high-fidelity digital experiences beyond dimensions.",
+    title: "The WebGenixx | Leading Web Development Agency in India",
+    description: "Architecting high-fidelity digital experiences beyond dimensions. Custom web design, ecommerce, and scalable applications.",
     images: [
       {
         url: "/og-image.png",
@@ -35,8 +41,8 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "The WebGenixx | Modern Web Development Agency",
-    description: "Architecting high-fidelity digital experiences beyond dimensions.",
+    title: "The WebGenixx | Best Web Development Agency",
+    description: "Architecting high-fidelity digital experiences beyond dimensions. Custom web design, ecommerce, and scalable applications.",
     images: ["/og-image.png"],
   },
   robots: {
