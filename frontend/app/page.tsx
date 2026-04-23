@@ -24,7 +24,7 @@ const staggerContainer = {
 
 export default function Home() {
   const containerRef = useRef<HTMLDivElement>(null);
-  
+
   // Mouse movement tracking for 3D Hero Tilt
   const x = useMotionValue(0);
   const y = useMotionValue(0);
@@ -57,8 +57,8 @@ export default function Home() {
     <div className="relative overflow-hidden selection:bg-primary selection:text-black perspective-[1000px]">
       {/* 3D Parallax Background Orbs */}
       <div className="fixed inset-0 -z-10 overflow-hidden pointer-events-none">
-        <motion.div 
-          animate={{ 
+        <motion.div
+          animate={{
             x: [0, 50, 0],
             y: [0, 30, 0],
             scale: [1, 1.1, 1]
@@ -66,8 +66,8 @@ export default function Home() {
           transition={{ duration: 15, repeat: Infinity }}
           className="absolute top-[10%] left-[10%] w-[500px] h-[500px] bg-primary/10 rounded-full blur-[120px]"
         />
-        <motion.div 
-          animate={{ 
+        <motion.div
+          animate={{
             x: [0, -40, 0],
             y: [0, 60, 0],
             scale: [1, 1.2, 1]
@@ -89,10 +89,10 @@ export default function Home() {
               <span className="flex h-2 w-2 rounded-full bg-primary animate-pulse shadow-[0_0_10px_#00f2ff]"></span>
               Architecting Digital Experiences
             </div>
-            
+
             <h1 className="text-6xl md:text-8xl lg:text-[10rem] font-black outfit leading-[0.85] mb-12 tracking-tighter">
-              BEYOND <br />
-              <span className="gradient-text">DIMENSIONS</span>
+              THE <br />
+              <span className="gradient-text">WEBGENIXX</span>
             </h1>
 
             <p className="text-gray-400 text-xl md:text-3xl max-w-4xl mx-auto mb-16 leading-tight font-extralight tracking-tight">
@@ -119,30 +119,30 @@ export default function Home() {
             className="relative max-w-6xl mx-auto group perspective-[2000px]"
           >
             <div className="absolute -inset-4 bg-gradient-to-r from-primary/20 via-secondary/20 to-accent/20 rounded-[3rem] blur-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
-            
+
             <div className="relative glass-card p-4 border-white/5 rounded-[2.5rem] shadow-2xl transition-transform duration-200 ease-out">
               <div className="bg-dark-darker rounded-[1.8rem] overflow-hidden aspect-[16/9] relative shadow-inner">
-                 <Image 
-                   src="https://images.unsplash.com/photo-1550745165-9bc0b252726f?auto=format&fit=crop&q=80&w=1600" 
-                   alt="3D Visualization" 
-                   fill
-                   className="object-cover opacity-90 transition-transform duration-700 group-hover:scale-105"
-                   priority
-                 />
-                 <div className="absolute inset-0 bg-gradient-to-t from-dark-darker/80 via-transparent to-transparent"></div>
-                 
-                 {/* Floating 3D HUD Elements */}
-                 <motion.div 
-                   style={{ translateZ: 100 }}
-                   animate={{ y: [-10, 10, -10] }}
-                   transition={{ duration: 5, repeat: Infinity }}
-                   className="absolute top-12 left-12 glass-card py-4 px-8 border-primary/40 shadow-[0_0_30px_rgba(0,242,255,0.2)]"
-                 >
-                   <div className="text-left">
-                     <p className="text-[10px] font-black text-primary uppercase tracking-[0.2em] mb-1">Performance Index</p>
-                     <p className="text-3xl font-black outfit">99.9%</p>
-                   </div>
-                 </motion.div>
+                <Image
+                  src="https://images.unsplash.com/photo-1550745165-9bc0b252726f?auto=format&fit=crop&q=80&w=1600"
+                  alt="3D Visualization"
+                  fill
+                  className="object-cover opacity-90 transition-transform duration-700 group-hover:scale-105"
+                  priority
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-dark-darker/80 via-transparent to-transparent"></div>
+
+                {/* Floating 3D HUD Elements */}
+                <motion.div
+                  style={{ translateZ: 100 }}
+                  animate={{ y: [-10, 10, -10] }}
+                  transition={{ duration: 5, repeat: Infinity }}
+                  className="absolute top-12 left-12 glass-card py-4 px-8 border-primary/40 shadow-[0_0_30px_rgba(0,242,255,0.2)]"
+                >
+                  <div className="text-left">
+                    <p className="text-[10px] font-black text-primary uppercase tracking-[0.2em] mb-1">Performance Index</p>
+                    <p className="text-3xl font-black outfit">99.9%</p>
+                  </div>
+                </motion.div>
               </div>
             </div>
           </motion.div>
@@ -152,7 +152,7 @@ export default function Home() {
       {/* 3D Perspective Sections */}
       <section className="py-40 px-4 relative overflow-hidden">
         <div className="max-w-7xl mx-auto">
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0, rotateX: 20, y: 50 }}
             whileInView={{ opacity: 1, rotateX: 0, y: 0 }}
             transition={{ duration: 1 }}
@@ -165,28 +165,28 @@ export default function Home() {
             <div className="h-1 w-32 bg-primary mx-auto rounded-full shadow-[0_0_20px_#00f2ff]"></div>
           </motion.div>
 
-          <motion.div 
+          <motion.div
             variants={staggerContainer}
             initial="initial"
             whileInView="whileInView"
             className="grid grid-cols-1 lg:grid-cols-3 gap-10"
           >
             {[
-              { 
-                icon: Layers, 
-                title: "3D Visuals", 
+              {
+                icon: Layers,
+                title: "3D Visuals",
                 desc: "We integrate WebGL and Three.js for immersive browser experiences.",
                 color: "from-blue-600/20 to-blue-400/20"
               },
-              { 
-                icon: Zap, 
-                title: "Turbo Stack", 
+              {
+                icon: Zap,
+                title: "Turbo Stack",
                 desc: "Next.js 15 + Turbopack for lightning fast interactions and loads.",
                 color: "from-purple-600/20 to-pink-400/20"
               },
-              { 
-                icon: Shield, 
-                title: "Bank Grade", 
+              {
+                icon: Shield,
+                title: "Bank Grade",
                 desc: "Enterprise-level security for your data and your users' privacy.",
                 color: "from-emerald-600/20 to-teal-400/20"
               },
@@ -194,7 +194,7 @@ export default function Home() {
               <motion.div
                 key={i}
                 variants={fadeInUp}
-                whileHover={{ 
+                whileHover={{
                   translateZ: 50,
                   rotateX: -5,
                   rotateY: 5,
@@ -208,7 +208,7 @@ export default function Home() {
                 <h3 className="text-3xl font-black mb-6 outfit tracking-tight">{feat.title}</h3>
                 <p className="text-gray-400 text-lg leading-relaxed mb-10 font-light">{feat.desc}</p>
                 <div className="flex items-center gap-3 text-primary text-xs font-black uppercase tracking-widest">
-                   Learn More <ChevronRight size={16} />
+                  Learn More <ChevronRight size={16} />
                 </div>
               </motion.div>
             ))}
@@ -218,7 +218,7 @@ export default function Home() {
 
       {/* Massive CTA */}
       <section className="py-48 px-4">
-        <motion.div 
+        <motion.div
           initial={{ opacity: 0, scale: 0.8, rotateX: 10 }}
           whileInView={{ opacity: 1, scale: 1, rotateX: 0 }}
           className="max-w-6xl mx-auto glass-card p-24 md:p-40 border-primary/20 text-center relative overflow-hidden"
@@ -232,7 +232,7 @@ export default function Home() {
               Get Started
             </Link>
           </div>
-          
+
           <div className="absolute top-1/2 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-primary/50 to-transparent -z-10 blur-sm"></div>
         </motion.div>
       </section>

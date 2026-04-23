@@ -60,7 +60,7 @@ export default function About() {
                 <div className="flex items-center gap-4">
                   <div className="w-12 h-12 bg-gray-800 rounded-full"></div>
                   <div>
-                    <p className="font-bold">John Doe</p>
+                    <p className="font-bold">TEAM THE WEBGENIXX</p>
                     <p className="text-sm text-gray-500">CEO at TechFlow</p>
                   </div>
                 </div>
