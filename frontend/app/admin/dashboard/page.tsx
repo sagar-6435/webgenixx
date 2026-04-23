@@ -121,7 +121,7 @@ export default function AdminDashboard() {
       <div className="max-w-7xl mx-auto">
         <div className="flex justify-between items-center mb-12">
           <div>
-            <h1 className="text-3xl font-bold outfit">Admin <span className="gradient-text">Dashboard</span></h1>
+            <h1 className="text-3xl font-bold outfit">The WebGenixx <span className="gradient-text">Admin</span></h1>
             <p className="text-gray-500">Manage your agency portfolio</p>
           </div>
           <div className="flex gap-4">

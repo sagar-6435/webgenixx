@@ -9,7 +9,7 @@ const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
 const outfit = Outfit({ subsets: ["latin"], variable: "--font-outfit" });
 
 export const metadata: Metadata = {
-  title: "Webgenixx | Modern Web Development Agency",
+  title: "The WebGenixx | Modern Web Development Agency",
   description: "We build modern, high-performance websites and digital experiences.",
 };
 

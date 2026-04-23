@@ -21,7 +21,7 @@ export default function Contact() {
   };
 
   const handleWhatsApp = () => {
-    const message = encodeURIComponent(`Hi Webgenixx! I am ${formData.name || "interested"} and I would like to discuss a project.`);
+    const message = encodeURIComponent(`Hi The WebGenixx! I am ${formData.name || "interested"} and I would like to discuss a project.`);
     window.open(`https://wa.me/919999999999?text=${message}`, "_blank");
   };
 

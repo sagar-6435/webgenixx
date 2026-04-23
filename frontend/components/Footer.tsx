@@ -9,9 +9,9 @@ const Footer = () => {
           <div className="col-span-1 md:col-span-2">
             <Link href="/" className="flex items-center space-x-3 mb-6 group">
               <div className="relative w-8 h-8">
-                <Image src="/logo.png" alt="Webgenixx Logo" fill className="object-contain" />
+                <Image src="/logo.png" alt="The WebGenixx Logo" fill className="object-contain" />
               </div>
-              <span className="text-xl font-black tracking-tighter outfit group-hover:text-primary transition-colors uppercase">WEBGENIXX</span>
+              <span className="text-xl font-black tracking-tighter outfit group-hover:text-primary transition-colors uppercase">THE WEBGENIXX</span>
             </Link>
             <p className="text-gray-400 max-w-md mb-8">
               Empowering brands with cutting-edge web solutions. We blend creativity with technology to build digital experiences that leave a lasting impact.
@@ -44,7 +44,7 @@ const Footer = () => {
         </div>
         
         <div className="border-t border-white/5 pt-8 flex flex-col md:flex-row justify-between items-center text-gray-500 text-sm">
-          <p>© {new Date().getFullYear()} Webgenixx. All rights reserved.</p>
+          <p>© {new Date().getFullYear()} The WebGenixx. All rights reserved.</p>
           <div className="flex space-x-6 mt-4 md:mt-0">
             <a href="#" className="hover:text-white transition-colors">Privacy Policy</a>
             <a href="#" className="hover:text-white transition-colors">Terms of Service</a>

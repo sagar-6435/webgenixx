@@ -33,13 +33,13 @@ const Navbar = () => {
             <div className="relative w-10 h-10 transition-transform duration-500 group-hover:scale-110">
               <Image 
                 src="/logo.png" 
-                alt="Webgenixx Logo" 
+                alt="The WebGenixx Logo" 
                 fill 
                 className="object-contain"
               />
             </div>
             <span className="text-2xl font-black tracking-[-0.05em] outfit bg-clip-text text-transparent bg-gradient-to-r from-white to-gray-400 group-hover:from-primary group-hover:to-secondary transition-all">
-              WEBGENIXX
+              THE WEBGENIXX
             </span>
           </Link>
 
