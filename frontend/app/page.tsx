@@ -128,6 +128,7 @@ export default function Home() {
                   fill
                   className="object-cover opacity-90 transition-transform duration-700 group-hover:scale-105"
                   priority
+                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 70vw, 1200px"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-dark-darker/80 via-transparent to-transparent"></div>
 

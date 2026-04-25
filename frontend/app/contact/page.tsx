@@ -46,7 +46,7 @@ export default function Contact() {
                   <Mail className="text-primary" size={24} />
                 </div>
                 <div>
-                  <h4 className="text-xl font-bold mb-1">Email Us</h4>
+                  <h2 className="text-xl font-bold mb-1">Email Us</h2>
                   <p className="text-gray-400">hello@webgenixx.com</p>
                   <p className="text-gray-400">support@webgenixx.com</p>
                 </div>
@@ -56,7 +56,7 @@ export default function Contact() {
                   <MessageSquare className="text-secondary" size={24} />
                 </div>
                 <div>
-                  <h4 className="text-xl font-bold mb-1">Live Chat</h4>
+                  <h2 className="text-xl font-bold mb-1">Live Chat</h2>
                   <p className="text-gray-400">Available Mon-Fri, 9am-6pm</p>
                   <button onClick={handleWhatsApp} className="text-primary hover:underline mt-1 font-semibold flex items-center gap-1">
                     Chat on WhatsApp <ArrowRight size={14} />
@@ -68,17 +68,17 @@ export default function Contact() {
                   <Phone className="text-accent" size={24} />
                 </div>
                 <div>
-                  <h4 className="text-xl font-bold mb-1">Call Us</h4>
+                  <h2 className="text-xl font-bold mb-1">Call Us</h2>
                   <p className="text-gray-400">+91 999 999 9999</p>
                 </div>
               </div>
             </div>
 
             <div className="glass-card bg-primary/5 border-primary/20">
-               <h4 className="font-bold mb-4 flex items-center gap-2">
+               <h2 className="font-bold mb-4 flex items-center gap-2">
                  <CheckCircle2 className="text-primary" size={20} />
                  Free Consultation
-               </h4>
+               </h2>
                <p className="text-sm text-gray-400 leading-relaxed">
                  Book a 30-minute discovery call with our technical experts to discuss your project requirements and get a preliminary estimate.
                </p>
@@ -95,7 +95,7 @@ export default function Contact() {
                 <div className="w-20 h-20 bg-green-500/20 rounded-full flex items-center justify-center mb-6">
                   <CheckCircle2 className="text-green-500" size={40} />
                 </div>
-                <h3 className="text-3xl font-bold mb-4">Message Received!</h3>
+                <h2 className="text-3xl font-bold mb-4">Message Received!</h2>
                 <p className="text-gray-400 mb-8">Thank you for reaching out. Our team will get back to you within 24 hours.</p>
                 <button onClick={() => setSubmitted(false)} className="btn-secondary">Send another message</button>
               </div>

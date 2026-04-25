@@ -65,13 +65,13 @@ export default function Projects() {
                     className="object-cover group-hover:scale-105 transition-transform duration-500"
                   />
                   <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center gap-4">
-                    <a href={project.liveUrl} target="_blank" className="p-3 bg-primary text-black rounded-full hover:scale-110 transition-transform">
+                    <a href={project.liveUrl} target="_blank" className="p-3 bg-primary text-black rounded-full hover:scale-110 transition-transform" aria-label={`View ${project.title} live`}>
                       <ExternalLink size={20} />
                     </a>
                   </div>
                 </div>
                 
-                <h3 className="text-xl font-bold mb-2 text-white">{project.title}</h3>
+                <h2 className="text-xl font-bold mb-2 text-white">{project.title}</h2>
                 <p className="text-gray-400 text-sm mb-4 line-clamp-3 flex-grow">{project.description}</p>
                 
                 <div className="flex flex-wrap gap-2 mb-6">
@@ -92,7 +92,7 @@ export default function Projects() {
         
         {!loading && projects.length === 0 && (
           <div className="text-center py-20 bg-dark-lighter/50 rounded-3xl border border-white/5">
-             <p className="text-gray-500">No projects found yet. Admin is working on it!</p>
+             <p className="text-gray-400">No projects found yet. Admin is working on it!</p>
           </div>
         )}
       </div>

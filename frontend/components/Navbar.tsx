@@ -36,6 +36,7 @@ const Navbar = () => {
                 alt="The WebGenixx Logo" 
                 fill 
                 className="object-contain"
+                sizes="40px"
               />
             </div>
             <span className="text-xl font-bold tracking-tight outfit bg-clip-text text-transparent bg-gradient-to-r from-white to-gray-400 group-hover:from-primary group-hover:to-secondary transition-all">
@@ -61,7 +62,7 @@ const Navbar = () => {
 
           {/* Mobile Toggle */}
           <div className="md:hidden">
-            <button onClick={() => setIsOpen(!isOpen)} className="text-gray-300 hover:text-white">
+            <button onClick={() => setIsOpen(!isOpen)} className="text-gray-300 hover:text-white" aria-label="Toggle menu">
               {isOpen ? <X size={28} /> : <Menu size={28} />}
             </button>
           </div>
