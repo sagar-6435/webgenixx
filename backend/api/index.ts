@@ -1,3 +1,4 @@
+import 'reflect-metadata';
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from '../src/app.module';
 import { ValidationPipe } from '@nestjs/common';
@@ -20,6 +21,11 @@ export default async function handler(req: any, res: any) {
     // Static files for uploads (Note: persistent storage is needed for Vercel)
     app.use('/uploads', express.static(join(process.cwd(), 'uploads')));
     
+    // Ensure we have a database URI
+    if (!process.env.MONGODB_URI) {
+      console.warn('MONGODB_URI is not defined in environment variables');
+    }
+
     // Initialize the app
     await app.init();
     
@@ -28,5 +34,10 @@ export default async function handler(req: any, res: any) {
   }
   
   // Forward the request to the express instance
-  return cachedApp(req, res);
+  try {
+    return cachedApp(req, res);
+  } catch (error) {
+    console.error('Error handling request:', error);
+    res.status(500).send('Internal Server Error');
+  }
 }
