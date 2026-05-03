@@ -68,9 +68,19 @@ export class ProjectsController {
 
   @Get('image/:id')
   async serveImage(@Param('id') id: string, @Res() res: Response) {
-    const image = await this.projectsService.getImage(id);
-    res.setHeader('Content-Type', image.contentType);
-    res.setHeader('Cache-Control', 'public, max-age=31536000'); // Cache for 1 year
-    return res.send(image.data);
+    console.log(`Attempting to serve image with ID: ${id}`);
+    try {
+      const image = await this.projectsService.getImage(id);
+      console.log(`Image found: ${image.filename}, type: ${image.contentType}`);
+      
+      res.setHeader('Content-Type', image.contentType);
+      res.setHeader('Cache-Control', 'public, max-age=31536000');
+      res.setHeader('Access-Control-Allow-Origin', '*'); // Explicitly allow for images
+      
+      return res.send(image.data);
+    } catch (error) {
+      console.error(`Error serving image ${id}:`, error.message);
+      return res.status(404).json({ message: 'Image not found' });
+    }
   }
 }
