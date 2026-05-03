@@ -31,6 +31,7 @@ export default function AdminDashboard() {
   const [messages, setMessages] = useState<ContactMessage[]>([]);
   const [loading, setLoading] = useState(true);
   const [isUploading, setIsUploading] = useState(false);
+  const [isSaving, setIsSaving] = useState(false);
   const [modalOpen, setModalOpen] = useState(false);
   const [editingProject, setEditingProject] = useState<Project | null>(null);
   const [formData, setFormData] = useState({
@@ -106,6 +107,7 @@ export default function AdminDashboard() {
       techStack: formData.techStack.split(",").map((s) => s.trim()),
     };
 
+    setIsSaving(true);
     try {
       if (editingProject) {
         await api.patch(`/projects/${editingProject._id}`, payload);
@@ -120,6 +122,8 @@ export default function AdminDashboard() {
       fetchProjects();
     } catch (error) {
       toast.error("Operation failed");
+    } finally {
+      setIsSaving(false);
     }
   };
 
@@ -366,10 +370,10 @@ export default function AdminDashboard() {
               <div className="flex gap-3 pt-4">
                 <button 
                   type="submit" 
-                  disabled={isUploading || !formData.imageUrl}
+                  disabled={isUploading || isSaving || !formData.imageUrl}
                   className="btn-primary flex-grow disabled:opacity-50 disabled:cursor-not-allowed"
                 >
-                  {isUploading ? "Uploading Image..." : "Save Project"}
+                  {isUploading ? "Uploading..." : isSaving ? "Saving..." : "Save Project"}
                 </button>
                 <button type="button" onClick={() => setModalOpen(false)} className="btn-secondary">Cancel</button>
               </div>
