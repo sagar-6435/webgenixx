@@ -15,8 +15,20 @@ interface Project {
   techStack: string[];
 }
 
+interface ContactMessage {
+  _id: string;
+  name: string;
+  email: string;
+  subject: string;
+  message: string;
+  status: string;
+  createdAt: string;
+}
+
 export default function AdminDashboard() {
+  const [activeTab, setActiveTab] = useState<"projects" | "messages">("projects");
   const [projects, setProjects] = useState<Project[]>([]);
+  const [messages, setMessages] = useState<ContactMessage[]>([]);
   const [loading, setLoading] = useState(true);
   const [modalOpen, setModalOpen] = useState(false);
   const [editingProject, setEditingProject] = useState<Project | null>(null);
@@ -35,8 +47,24 @@ export default function AdminDashboard() {
       router.push("/admin/login");
       return;
     }
-    fetchProjects();
+    fetchData();
   }, []);
+
+  const fetchData = async () => {
+    setLoading(true);
+    try {
+      const [projRes, msgRes] = await Promise.all([
+        api.get("/projects"),
+        api.get("/contacts")
+      ]);
+      setProjects(projRes.data);
+      setMessages(msgRes.data);
+    } catch (error) {
+      toast.error("Failed to fetch data");
+    } finally {
+      setLoading(false);
+    }
+  };
 
   const fetchProjects = async () => {
     try {
@@ -44,8 +72,6 @@ export default function AdminDashboard() {
       setProjects(data);
     } catch (error) {
       toast.error("Failed to fetch projects");
-    } finally {
-      setLoading(false);
     }
   };
 
@@ -104,6 +130,26 @@ export default function AdminDashboard() {
     }
   };
 
+  const handleDeleteMessage = async (id: string) => {
+    if (!confirm("Delete this message?")) return;
+    try {
+      await api.delete(`/contacts/${id}`);
+      toast.success("Message deleted");
+      fetchData();
+    } catch (error) {
+      toast.error("Delete failed");
+    }
+  };
+
+  const markAsRead = async (id: string) => {
+    try {
+      await api.patch(`/contacts/${id}/status`, { status: "read" });
+      fetchData();
+    } catch (error) {
+      toast.error("Status update failed");
+    }
+  };
+
   const openEdit = (project: Project) => {
     setEditingProject(project);
     setFormData({
@@ -119,10 +165,10 @@ export default function AdminDashboard() {
   return (
     <div className="min-h-screen pt-24 pb-20 px-4 bg-dark">
       <div className="max-w-7xl mx-auto">
-        <div className="flex justify-between items-center mb-12">
+        <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-6 mb-12">
           <div>
             <h1 className="text-3xl font-bold outfit">The WebGenixx <span className="gradient-text">Admin</span></h1>
-            <p className="text-gray-500">Manage your agency portfolio</p>
+            <p className="text-gray-500">Manage your agency portal</p>
           </div>
           <div className="flex gap-4">
             <button
@@ -141,58 +187,101 @@ export default function AdminDashboard() {
           </div>
         </div>
 
-        {/* Stats */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
-          <div className="glass-card text-center">
-            <p className="text-gray-500 text-sm">Total Projects</p>
-            <h2 className="text-4xl font-bold text-primary">{projects.length}</h2>
-          </div>
+        {/* Tabs */}
+        <div className="flex gap-4 mb-8">
+          <button 
+            onClick={() => setActiveTab("projects")}
+            className={`px-6 py-2 rounded-full text-sm font-bold transition-all ${activeTab === "projects" ? "bg-primary text-black" : "bg-white/5 text-gray-400 hover:bg-white/10"}`}
+          >
+            Projects
+          </button>
+          <button 
+            onClick={() => setActiveTab("messages")}
+            className={`px-6 py-2 rounded-full text-sm font-bold transition-all ${activeTab === "messages" ? "bg-primary text-black" : "bg-white/5 text-gray-400 hover:bg-white/10"}`}
+          >
+            Messages {messages.filter(m => m.status === 'unread').length > 0 && <span className="ml-2 bg-red-500 text-white px-1.5 py-0.5 rounded-full text-[10px]">{messages.filter(m => m.status === 'unread').length}</span>}
+          </button>
         </div>
 
-        {/* Projects Table */}
-        <div className="glass-card p-0 overflow-hidden border-white/5">
-          <table className="w-full text-left">
-            <thead>
-              <tr className="bg-white/5 text-gray-400 text-sm uppercase">
-                <th className="px-6 py-4">Project</th>
-                <th className="px-6 py-4">Tech Stack</th>
-                <th className="px-6 py-4 text-right">Actions</th>
-              </tr>
-            </thead>
-            <tbody className="divide-y divide-white/5">
-              {loading ? (
-                <tr>
-                  <td colSpan={3} className="px-6 py-20 text-center">
-                    <Loader2 className="animate-spin mx-auto text-primary" size={32} />
-                  </td>
+        {/* Content */}
+        {activeTab === "projects" ? (
+          <div className="glass-card p-0 overflow-hidden border-white/5">
+            <table className="w-full text-left">
+              <thead>
+                <tr className="bg-white/5 text-gray-400 text-sm uppercase">
+                  <th className="px-6 py-4">Project</th>
+                  <th className="px-6 py-4">Tech Stack</th>
+                  <th className="px-6 py-4 text-right">Actions</th>
                 </tr>
-              ) : projects.map((project) => (
-                <tr key={project._id} className="hover:bg-white/5 transition-colors">
-                  <td className="px-6 py-4">
-                    <div className="flex items-center gap-4">
-                      <img src={project.imageUrl.startsWith('http') ? project.imageUrl : `${process.env.NEXT_PUBLIC_API_URL?.replace('/api', '')}${project.imageUrl}`} className="w-12 h-12 rounded object-cover border border-white/10" alt="" />
-                      <div>
-                        <p className="font-bold">{project.title}</p>
-                        <p className="text-xs text-gray-500 truncate max-w-[200px]">{project.description}</p>
+              </thead>
+              <tbody className="divide-y divide-white/5">
+                {loading ? (
+                  <tr>
+                    <td colSpan={3} className="px-6 py-20 text-center">
+                      <Loader2 className="animate-spin mx-auto text-primary" size={32} />
+                    </td>
+                  </tr>
+                ) : projects.map((project) => (
+                  <tr key={project._id} className="hover:bg-white/5 transition-colors">
+                    <td className="px-6 py-4">
+                      <div className="flex items-center gap-4">
+                        <img src={project.imageUrl.startsWith('http') ? project.imageUrl : `${process.env.NEXT_PUBLIC_API_URL?.replace('/api', '')}${project.imageUrl}`} className="w-12 h-12 rounded object-cover border border-white/10" alt="" />
+                        <div>
+                          <p className="font-bold">{project.title}</p>
+                          <p className="text-xs text-gray-500 truncate max-w-[200px]">{project.description}</p>
+                        </div>
                       </div>
+                    </td>
+                    <td className="px-6 py-4 text-xs">
+                      <div className="flex flex-wrap gap-1">
+                        {project.techStack.map(t => <span key={t} className="bg-white/10 px-1.5 py-0.5 rounded">{t}</span>)}
+                      </div>
+                    </td>
+                    <td className="px-6 py-4 text-right">
+                      <div className="flex justify-end gap-2">
+                        <button onClick={() => openEdit(project)} className="p-2 text-gray-400 hover:text-primary"><Edit2 size={18} /></button>
+                        <button onClick={() => handleDelete(project._id)} className="p-2 text-gray-400 hover:text-red-500"><Trash2 size={18} /></button>
+                      </div>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        ) : (
+          <div className="grid grid-cols-1 gap-6">
+            {loading ? (
+              <div className="glass-card py-20 text-center">
+                <Loader2 className="animate-spin mx-auto text-primary" size={32} />
+              </div>
+            ) : messages.length === 0 ? (
+              <div className="glass-card py-20 text-center text-gray-500">
+                No messages yet.
+              </div>
+            ) : messages.map((msg) => (
+              <div key={msg._id} className={`glass-card p-6 border-white/5 hover:border-primary/20 transition-all ${msg.status === 'unread' ? 'border-l-4 border-l-primary' : ''}`}>
+                <div className="flex justify-between items-start mb-4">
+                  <div>
+                    <h3 className="text-lg font-bold">{msg.subject}</h3>
+                    <p className="text-sm text-gray-400">From: <span className="text-white font-medium">{msg.name}</span> ({msg.email})</p>
+                  </div>
+                  <div className="text-right">
+                    <p className="text-[10px] text-gray-500 uppercase font-bold tracking-widest">{new Date(msg.createdAt).toLocaleDateString()}</p>
+                    <div className="flex gap-2 mt-2">
+                      {msg.status === 'unread' && (
+                        <button onClick={() => markAsRead(msg._id)} className="text-[10px] text-primary hover:underline font-black uppercase">Mark Read</button>
+                      )}
+                      <button onClick={() => handleDeleteMessage(msg._id)} className="text-[10px] text-red-500 hover:underline font-black uppercase">Delete</button>
                     </div>
-                  </td>
-                  <td className="px-6 py-4 text-xs">
-                    <div className="flex flex-wrap gap-1">
-                      {project.techStack.map(t => <span key={t} className="bg-white/10 px-1.5 py-0.5 rounded">{t}</span>)}
-                    </div>
-                  </td>
-                  <td className="px-6 py-4 text-right">
-                    <div className="flex justify-end gap-2">
-                      <button onClick={() => openEdit(project)} className="p-2 text-gray-400 hover:text-primary"><Edit2 size={18} /></button>
-                      <button onClick={() => handleDelete(project._id)} className="p-2 text-gray-400 hover:text-red-500"><Trash2 size={18} /></button>
-                    </div>
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
+                  </div>
+                </div>
+                <div className="bg-white/5 rounded-lg p-4 text-sm text-gray-300 leading-relaxed italic">
+                  &quot;{msg.message}&quot;
+                </div>
+              </div>
+            ))}
+          </div>
+        )}
       </div>
 
       {/* Modal */}

@@ -5,6 +5,7 @@ import { MongooseModule } from '@nestjs/mongoose';
 import { ConfigModule } from '@nestjs/config';
 import { AuthModule } from './auth/auth.module';
 import { ProjectsModule } from './projects/projects.module';
+import { ContactsModule } from './contacts/contacts.module';
 
 @Module({
   imports: [
@@ -12,6 +13,7 @@ import { ProjectsModule } from './projects/projects.module';
     MongooseModule.forRoot(process.env.MONGODB_URI || 'mongodb://localhost:27017/webgenixx'),
     AuthModule,
     ProjectsModule,
+    ContactsModule,
   ],
   controllers: [AppController],
   providers: [AppService],

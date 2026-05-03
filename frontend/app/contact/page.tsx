@@ -3,26 +3,35 @@ import { useState } from "react";
 import { motion } from "framer-motion";
 import { Mail, MessageSquare, Phone, Send, CheckCircle2 } from "lucide-react";
 import { toast } from "react-hot-toast";
+import api from "@/lib/api";
 
 export default function Contact() {
   const [submitted, setSubmitted] = useState(false);
+  const [loading, setLoading] = useState(false);
   const [formData, setFormData] = useState({
     name: "",
     email: "",
+    subject: "",
     message: ""
   });
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    console.log("Contact form submitted:", formData);
-    // In a real app, send to API or Formspree
-    toast.success("Message sent successfully!");
-    setSubmitted(true);
+    setLoading(true);
+    try {
+      await api.post("/contacts", formData);
+      toast.success("Message sent successfully!");
+      setSubmitted(true);
+    } catch (error) {
+      toast.error("Failed to send message. Please try again.");
+    } finally {
+      setLoading(false);
+    }
   };
 
   const handleWhatsApp = () => {
     const message = encodeURIComponent(`Hi The WebGenixx! I am ${formData.name || "interested"} and I would like to discuss a project.`);
-    window.open(`https://wa.me/919999999999?text=${message}`, "_blank");
+    window.open(`https://wa.me/918897536435?text=${message}`, "_blank");
   };
 
   return (
@@ -47,8 +56,7 @@ export default function Contact() {
                 </div>
                 <div>
                   <h2 className="text-xl font-bold mb-1">Email Us</h2>
-                  <p className="text-gray-400">hello@webgenixx.com</p>
-                  <p className="text-gray-400">support@webgenixx.com</p>
+                  <p className="text-gray-400"><a href="mailto:[EMAIL_ADDRESS]">thewebgenixx@outlook.com</a></p>
                 </div>
               </div>
               <div className="flex items-start gap-6">
@@ -69,7 +77,7 @@ export default function Contact() {
                 </div>
                 <div>
                   <h2 className="text-xl font-bold mb-1">Call Us</h2>
-                  <p className="text-gray-400">+91 999 999 9999</p>
+                  <p className="text-gray-400">+91 8897536435</p>
                 </div>
               </div>
             </div>
@@ -126,6 +134,17 @@ export default function Contact() {
                   </div>
                 </div>
                 <div>
+                  <label className="block text-sm font-medium text-gray-400 mb-2">Subject</label>
+                  <input
+                    type="text"
+                    required
+                    value={formData.subject}
+                    onChange={(e) => setFormData({...formData, subject: e.target.value})}
+                    className="w-full bg-dark border border-white/10 rounded-lg py-3 px-4 text-white focus:border-primary outline-none transition-all"
+                    placeholder="Project Inquiry, Support, etc."
+                  />
+                </div>
+                <div>
                   <label className="block text-sm font-medium text-gray-400 mb-2">Message</label>
                   <textarea
                     required
@@ -136,8 +155,13 @@ export default function Contact() {
                     placeholder="Tell us about your project..."
                   ></textarea>
                 </div>
-                <button type="submit" className="w-full btn-primary flex items-center justify-center gap-2 group">
-                  Send Message <Send size={18} className="group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
+                <button 
+                  type="submit" 
+                  disabled={loading}
+                  className="w-full btn-primary flex items-center justify-center gap-2 group disabled:opacity-50"
+                >
+                  {loading ? "Sending..." : "Send Message"} 
+                  {!loading && <Send size={18} className="group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />}
                 </button>
               </form>
             )}
