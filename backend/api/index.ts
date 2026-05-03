@@ -15,13 +15,10 @@ export default async function handler(req: any, res: any) {
     
     // Configure the app (mirroring main.ts)
     app.enableCors({
-      origin: [
-        'https://thewebgenixx.vercel.app',
-        'https://webgenixxbackend.vercel.app',
-        'http://localhost:3000'
-      ],
+      origin: true, // Allow all origins for debugging, or you can specify a function
       credentials: true,
-      methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH', 'OPTIONS'],
+      methods: 'GET,HEAD,PUT,PATCH,POST,DELETE,OPTIONS',
+      allowedHeaders: 'Content-Type,Accept,Authorization',
     });
     app.setGlobalPrefix('api');
     app.useGlobalPipes(new ValidationPipe());
