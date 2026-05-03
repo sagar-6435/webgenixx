@@ -141,7 +141,7 @@ export default function Home() {
                 >
                   <div className="text-left">
                     <p className="text-[10px] font-black text-primary uppercase tracking-[0.2em] mb-1">Performance Index</p>
-                    <p className="text-3xl font-black outfit">99.9%</p>
+                    <p className="text-3xl font-black outfit">98.0%</p>
                   </div>
                 </motion.div>
               </div>
@@ -170,26 +170,38 @@ export default function Home() {
             variants={staggerContainer}
             initial="initial"
             whileInView="whileInView"
-            className="grid grid-cols-1 lg:grid-cols-3 gap-10"
+            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10"
           >
             {[
               {
-                icon: Layers,
-                title: "3D Visuals",
-                desc: "We integrate WebGL and Three.js for immersive browser experiences.",
+                icon: Palette,
+                title: "Website Designing",
+                desc: "High-fidelity UI/UX designs that capture your brand's essence and engage your audience through immersive visuals.",
                 color: "from-blue-600/20 to-blue-400/20"
               },
               {
-                icon: Zap,
-                title: "Turbo Stack",
-                desc: "Next.js 15 + Turbopack for lightning fast interactions and loads.",
+                icon: Code,
+                title: "Website Development",
+                desc: "Building lightning-fast, responsive, and scalable web applications using the latest modern technology stacks.",
                 color: "from-purple-600/20 to-pink-400/20"
               },
               {
-                icon: Shield,
-                title: "Bank Grade",
-                desc: "Enterprise-level security for your data and your users' privacy.",
+                icon: Globe,
+                title: "SEO Optimization",
+                desc: "Strategic search engine optimization to boost your visibility, drive organic traffic, and outrank your competition.",
                 color: "from-emerald-600/20 to-teal-400/20"
+              },
+              {
+                icon: Shield,
+                title: "Maintenance",
+                desc: "Continuous monitoring, security updates, and performance tuning to keep your digital assets running flawlessly.",
+                color: "from-orange-600/20 to-red-400/20"
+              },
+              {
+                icon: Layers,
+                title: "Website Redesigning",
+                desc: "Transforming outdated websites into modern, high-converting platforms that align with current digital standards.",
+                color: "from-indigo-600/20 to-cyan-400/20"
               },
             ].map((feat, i) => (
               <motion.div
