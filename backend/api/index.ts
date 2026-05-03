@@ -15,7 +15,11 @@ export default async function handler(req: any, res: any) {
     
     // Configure the app (mirroring main.ts)
     app.enableCors({
-      origin: ['https://thewebgenixx.vercel.app', 'http://localhost:3000'],
+      origin: [
+        'https://thewebgenixx.vercel.app',
+        'https://webgenixxbackend.vercel.app',
+        'http://localhost:3000'
+      ],
       credentials: true,
       methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH', 'OPTIONS'],
     });
