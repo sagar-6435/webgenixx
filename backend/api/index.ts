@@ -5,10 +5,15 @@ import { ValidationPipe } from '@nestjs/common';
 import * as express from 'express';
 import { join } from 'path';
 
+import { getConnectionToken } from '@nestjs/mongoose';
+import { Connection } from 'mongoose';
+
 // Variable to cache the NestJS app instance
 let cachedApp: any;
 
 export default async function handler(req: any, res: any) {
+  console.log(`[${req.method}] ${req.url} - Request received`);
+
   // Direct health check to verify if the Vercel function is alive
   if (req.url === '/api/health') {
     return res.status(200).json({ status: 'ok', message: 'Vercel function is alive' });
@@ -28,10 +33,13 @@ export default async function handler(req: any, res: any) {
       });
       app.setGlobalPrefix('api');
       app.useGlobalPipes(new ValidationPipe());
-      app.use('/uploads', express.static(join(process.cwd(), 'uploads')));
       
       console.log('Initializing NestJS app...');
       await app.init();
+
+      // Check Database Connection
+      const connection = app.get<Connection>(getConnectionToken());
+      console.log('Database connection state:', connection.readyState === 1 ? 'CONNECTED' : 'DISCONNECTED');
       
       cachedApp = app.getHttpAdapter().getInstance();
       console.log('NestJS initialization complete.');
