@@ -14,7 +14,11 @@ export default async function handler(req: any, res: any) {
     const app = await NestFactory.create(AppModule);
     
     // Configure the app (mirroring main.ts)
-    app.enableCors();
+    app.enableCors({
+      origin: ['https://thewebgenixx.vercel.app', 'http://localhost:3000'],
+      credentials: true,
+      methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH', 'OPTIONS'],
+    });
     app.setGlobalPrefix('api');
     app.useGlobalPipes(new ValidationPipe());
     
