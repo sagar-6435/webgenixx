@@ -9,6 +9,11 @@ import { join } from 'path';
 let cachedApp: any;
 
 export default async function handler(req: any, res: any) {
+  // Direct health check to verify if the Vercel function is alive
+  if (req.url === '/api/health') {
+    return res.status(200).json({ status: 'ok', message: 'Vercel function is alive' });
+  }
+
   if (!cachedApp) {
     // Create the NestJS app
     const app = await NestFactory.create(AppModule);
