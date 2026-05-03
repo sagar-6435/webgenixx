@@ -32,6 +32,8 @@ export default async function handler(req: any, res: any) {
         allowedHeaders: 'Content-Type,Accept,Authorization',
       });
       app.setGlobalPrefix('api');
+      app.use(express.json({ limit: '10mb' }));
+      app.use(express.urlencoded({ limit: '10mb', extended: true }));
       app.useGlobalPipes(new ValidationPipe());
       
       console.log('Initializing NestJS app...');

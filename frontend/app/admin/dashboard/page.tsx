@@ -30,6 +30,7 @@ export default function AdminDashboard() {
   const [projects, setProjects] = useState<Project[]>([]);
   const [messages, setMessages] = useState<ContactMessage[]>([]);
   const [loading, setLoading] = useState(true);
+  const [isUploading, setIsUploading] = useState(false);
   const [modalOpen, setModalOpen] = useState(false);
   const [editingProject, setEditingProject] = useState<Project | null>(null);
   const [formData, setFormData] = useState({
@@ -86,12 +87,15 @@ export default function AdminDashboard() {
     const formData = new FormData();
     formData.append("file", file);
 
+    setIsUploading(true);
     try {
       const { data } = await api.post("/projects/upload", formData);
       setFormData((prev) => ({ ...prev, imageUrl: data.url }));
       toast.success("Image uploaded!");
     } catch (error) {
       toast.error("Upload failed");
+    } finally {
+      setIsUploading(false);
     }
   };
 
@@ -360,7 +364,13 @@ export default function AdminDashboard() {
                 </div>
               </div>
               <div className="flex gap-3 pt-4">
-                <button type="submit" className="btn-primary flex-grow">Save Project</button>
+                <button 
+                  type="submit" 
+                  disabled={isUploading || !formData.imageUrl}
+                  className="btn-primary flex-grow disabled:opacity-50 disabled:cursor-not-allowed"
+                >
+                  {isUploading ? "Uploading Image..." : "Save Project"}
+                </button>
                 <button type="button" onClick={() => setModalOpen(false)} className="btn-secondary">Cancel</button>
               </div>
             </form>

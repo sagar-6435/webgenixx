@@ -9,6 +9,8 @@ async function bootstrap() {
   
   app.enableCors();
   app.setGlobalPrefix('api');
+  app.use(express.json({ limit: '10mb' }));
+  app.use(express.urlencoded({ limit: '10mb', extended: true }));
   app.useGlobalPipes(new ValidationPipe());
   
   // Static files for uploads
