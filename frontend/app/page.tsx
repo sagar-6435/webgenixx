@@ -116,7 +116,7 @@ export default function Home() {
               rotateY,
               transformStyle: "preserve-3d",
             }}
-            className="relative max-w-6xl mx-auto group perspective-[2000px]"
+            className="relative max-w-4xl mx-auto group perspective-[2000px]"
           >
             <div className="absolute -inset-4 bg-gradient-to-r from-primary/20 via-secondary/20 to-accent/20 rounded-[3rem] blur-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
 
