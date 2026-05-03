@@ -26,7 +26,7 @@ const nextConfig = {
       },
       {
         protocol: 'https',
-        hostname: 'webgenixx-backend.vercel.app',
+        hostname: 'webgenixxbackend.vercel.app',
       }
     ],
   },

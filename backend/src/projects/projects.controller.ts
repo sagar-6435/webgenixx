@@ -9,7 +9,9 @@ import {
   UseInterceptors,
   UploadedFile,
   UseGuards,
+  Res,
 } from '@nestjs/common';
+import { Response } from 'express';
 import { FileInterceptor } from '@nestjs/platform-express';
 import { memoryStorage } from 'multer';
 import { extname } from 'path';
@@ -53,13 +55,22 @@ export class ProjectsController {
   @UseInterceptors(
     FileInterceptor('file', {
       storage: memoryStorage(),
+      limits: { fileSize: 10 * 1024 * 1024 }, // 10MB
     }),
   )
-  uploadFile(@UploadedFile() file: Express.Multer.File) {
-    // Note: On Vercel, memory storage is used. In production, 
-    // you should upload this buffer to Vercel Blob or S3.
+  async uploadFile(@UploadedFile() file: Express.Multer.File) {
+    const savedImage = await this.projectsService.saveImage(file);
+    const baseUrl = process.env.API_URL || 'http://localhost:5000';
     return {
-      url: `data:${file.mimetype};base64,${file.buffer.toString('base64')}`,
+      url: `${baseUrl}/api/projects/image/${savedImage._id}`,
     };
+  }
+
+  @Get('image/:id')
+  async serveImage(@Param('id') id: string, @Res() res: Response) {
+    const image = await this.projectsService.getImage(id);
+    res.setHeader('Content-Type', image.contentType);
+    res.setHeader('Cache-Control', 'public, max-age=31536000'); // Cache for 1 year
+    return res.send(image.data);
   }
 }
