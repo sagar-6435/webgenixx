@@ -15,32 +15,30 @@ export default async function handler(req: any, res: any) {
   }
 
   if (!cachedApp) {
-    // Create the NestJS app
-    const app = await NestFactory.create(AppModule);
-    
-    // Configure the app (mirroring main.ts)
-    app.enableCors({
-      origin: true, // Allow all origins for debugging, or you can specify a function
-      credentials: true,
-      methods: 'GET,HEAD,PUT,PATCH,POST,DELETE,OPTIONS',
-      allowedHeaders: 'Content-Type,Accept,Authorization',
-    });
-    app.setGlobalPrefix('api');
-    app.useGlobalPipes(new ValidationPipe());
-    
-    // Static files for uploads (Note: persistent storage is needed for Vercel)
-    app.use('/uploads', express.static(join(process.cwd(), 'uploads')));
-    
-    // Ensure we have a database URI
-    if (!process.env.MONGODB_URI) {
-      console.warn('MONGODB_URI is not defined in environment variables');
+    try {
+      console.log('Starting NestJS initialization...');
+      const app = await NestFactory.create(AppModule, { logger: ['error', 'warn', 'log'] });
+      
+      console.log('Configuring middleware...');
+      app.enableCors({
+        origin: true,
+        credentials: true,
+        methods: 'GET,HEAD,PUT,PATCH,POST,DELETE,OPTIONS',
+        allowedHeaders: 'Content-Type,Accept,Authorization',
+      });
+      app.setGlobalPrefix('api');
+      app.useGlobalPipes(new ValidationPipe());
+      app.use('/uploads', express.static(join(process.cwd(), 'uploads')));
+      
+      console.log('Initializing NestJS app...');
+      await app.init();
+      
+      cachedApp = app.getHttpAdapter().getInstance();
+      console.log('NestJS initialization complete.');
+    } catch (err) {
+      console.error('NestJS initialization failed:', err);
+      return res.status(500).json({ error: 'Failed to initialize backend', details: err.message });
     }
-
-    // Initialize the app
-    await app.init();
-    
-    // Get the underlying express instance
-    cachedApp = app.getHttpAdapter().getInstance();
   }
   
   // Forward the request to the express instance
