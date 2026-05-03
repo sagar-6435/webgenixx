@@ -11,7 +11,7 @@ import {
   UseGuards,
 } from '@nestjs/common';
 import { FileInterceptor } from '@nestjs/platform-express';
-import { diskStorage } from 'multer';
+import { memoryStorage } from 'multer';
 import { extname } from 'path';
 import { ProjectsService } from './projects.service';
 import { AuthGuard } from '@nestjs/passport';
@@ -52,21 +52,14 @@ export class ProjectsController {
   @UseGuards(AuthGuard('jwt'))
   @UseInterceptors(
     FileInterceptor('file', {
-      storage: diskStorage({
-        destination: './uploads',
-        filename: (req, file, cb) => {
-          const randomName = Array(32)
-            .fill(null)
-            .map(() => Math.round(Math.random() * 16).toString(16))
-            .join('');
-          return cb(null, `${randomName}${extname(file.originalname)}`);
-        },
-      }),
+      storage: memoryStorage(),
     }),
   )
   uploadFile(@UploadedFile() file: Express.Multer.File) {
+    // Note: On Vercel, memory storage is used. In production, 
+    // you should upload this buffer to Vercel Blob or S3.
     return {
-      url: `/uploads/${file.filename}`,
+      url: `data:${file.mimetype};base64,${file.buffer.toString('base64')}`,
     };
   }
 }
