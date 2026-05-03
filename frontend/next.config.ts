@@ -19,6 +19,14 @@ const nextConfig = {
       {
         protocol: 'https',
         hostname: 'webgenixx.onrender.com',
+      },
+      {
+        protocol: 'https',
+        hostname: '*-sagar-6435.vercel.app',
+      },
+      {
+        protocol: 'https',
+        hostname: 'webgenixx-backend.vercel.app',
       }
     ],
   },
